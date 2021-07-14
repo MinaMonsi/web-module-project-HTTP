@@ -60,15 +60,18 @@ let movies = [
 
 let movieId = movies.length;
 
+//returns all entries
 app.get("/api/movies", (req, res) => {
   res.send(movies);
 });
 
+//returns single entry
 app.get("/api/movies/:id", (req, res) => {
   const movie = movies.filter(movie => `${movie.id}` === req.params.id)[0];
   res.status(200).json(movie);
 });
 
+//new entry created
 app.post("/api/movies", (req, res) => {
   if (req.body.title !== undefined) {
     const newMovie = req.body;
@@ -79,6 +82,7 @@ app.post("/api/movies", (req, res) => {
   res.status(201).json(movies);
 });
 
+//updates and existing entry
 app.put("/api/movies/:id", (req, res) => {
   if (!req.params.id)
     res.status(400).send("Your request is missing the movie id");
@@ -101,6 +105,7 @@ app.put("/api/movies/:id", (req, res) => {
   res.status(200).send(movies);
 });
 
+//deletes existing entry
 app.delete("/api/movies/:id", (req, res) => {
   if (!req.params.id)
     res.status(400).send("Your request is missing the movie id");
