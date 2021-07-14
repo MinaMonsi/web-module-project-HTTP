@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-
 import { Route, Switch, Redirect } from "react-router-dom";
+import axios from 'axios';
+
 import MovieList from './components/MovieList';
 import Movie from './components/Movie';
-
 import MovieHeader from './components/MovieHeader';
-
 import EditMovieForm from './components/EditMovieForm';
 import FavoriteMovieList from './components/FavoriteMovieList';
+//imported AddMovieForm.js
+import AddMovieForm from './components/AddMovieForm';
 
-import axios from 'axios';
 
 const App = (props) => {
   const [movies, setMovies] = useState([]);
@@ -58,6 +58,10 @@ const App = (props) => {
 
             <Route path="/">
               <Redirect to="/movies"/>
+            </Route>
+
+            <Route path="/addMovie">
+              <AddMovieForm setMovies={setMovies} />
             </Route>
           </Switch>
         </div>
